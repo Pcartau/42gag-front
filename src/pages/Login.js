@@ -31,7 +31,7 @@ export default function Login() {
     <h2 style={{color: 'white'}}>Un moment...</h2>
   ) : (
     <div className="login-container">
-      <a className="login" href="https://api.intra.42.fr/oauth/authorize?client_id=e7233ee8c8e4af846bda55aad3a6e99d9a2ff94e1e49c007f69320f647c55083&redirect_uri=https%3A%2F%2Fmodest-nobel-6d4bf1.netlify.app%2Flogin&response_type=code">Login</a>
+      <a className="login" href="https://api.intra.42.fr/oauth/authorize?client_id=e7233ee8c8e4af846bda55aad3a6e99d9a2ff94e1e49c007f69320f647c55083&redirect_uri=https%3A%2F%2F42gag.netlify.app%2Flogin&response_type=code">Login</a>
     </div>
   )
 }
