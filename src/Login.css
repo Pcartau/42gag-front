@@ -1,0 +1,26 @@
+body {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+.login-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url(./puttsche.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login {
+  backdrop-filter: blur(30px);
+  background-color: #ffffff26;
+  padding: 10px;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+}

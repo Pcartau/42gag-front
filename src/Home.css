@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP:regular,bold,italic');
+* {
+  font-family: 'Noto Sans JP';
+}
+body {
+  height: 100%;
+  background-color: #0e0e0e;  
+}
+.main {
+  background-color: #0e0e0e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.main-container {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60px;
+}
+.image-container {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+}
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.header-title {
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+}
+.header-user {
+  position: absolute;
+  left: 12px;
+  padding-top: 12px;
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+}
+.user-link {
+  margin-left: 5px;
+  text-decoration: none;
+  color: white;
+}
+.image {
+  width: 100vw;
+  max-height: 1200px;
+  object-fit: contain;
+}
+.title {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.linear-gradient {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, #00000080, transparent);
+}
+.revert-linear-gradient {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to top, #00000080, transparent);
+}
+.likes-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  bottom: 0;
+  margin-left: 12px; 
+}
+.heart-desc {
+  color: white;
+  margin-left: 5px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.liked-image {
+  opacity: 0;
+  display: flex;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  transition: all .2s;
+}
+.footer {
+  position: fixed;
+  background-color: #ffffff40;
+  backdrop-filter: blur(30px);
+  height: 60px;
+  z-index: 2;
+  bottom: 0;
+  width: 100%;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-image-button {
+  width: 126px;
+  height: 80px;
+}
+.add-popup {
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000b5;
+  backdrop-filter: blur(30px);
+}
+.custom-file-upload {
+  color: white;
+  backdrop-filter: blur(30px);
+  background-color: #ffffff61;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+.buttons-container {
+  margin-top: 10px;
+  display: flex;
+}
+.confirm-button {
+  backdrop-filter: blur(30px);
+  background-color: #ffffff61;
+  padding: 10px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-right: 5px;
+}
+.cancel-button {
+  backdrop-filter: blur(30px);
+  background-color: #ffffff61;
+  padding: 10px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-left: 5px;
+}
+.title-input {
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.anonym-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  backdrop-filter: blur(30px);
+  background-color: #ffffff61;
+  padding: 10px;
+  border-radius: 4px;
+}
