@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'https://gag42.herokuapp.com/' // 'http://localhost:8000';
+const url = 'https://gag42.herokuapp.com' // 'http://localhost:8000';
 
 export async function login(code) {
   return axios.post(`${url}/auth`, { code })
