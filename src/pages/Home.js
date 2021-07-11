@@ -20,6 +20,7 @@ export default function Home() {
         setImages(images);
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const toBase64 = file => new Promise((resolve, reject) => {
@@ -102,10 +103,10 @@ export default function Home() {
               <div className="linear-gradient" />
               <div className="revert-linear-gradient" />
               <div className="header-user">
-                <img src={image.userImg} className="user-image" />
+                <img alt="user-img" src={image.userImg} className="user-image" />
                 <a className="user-link" href={image.userUrl}>{image.username}</a>
               </div>
-              <img className="image" src={image.base64} />
+              <img alt="main-img" className="image" src={image.base64} />
               <div className="likes-container">
                 <Heart width="20px" height="20px" fill="#ff5023" />
                 <p className="heart-desc">{image.likesNumber}</p>

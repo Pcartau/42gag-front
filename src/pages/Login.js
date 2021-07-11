@@ -1,7 +1,6 @@
 import React from "react";
 import { login } from '../utils/api';
 import { useHistory } from "react-router-dom";
-import Puttsche from '../puttsche.png';
 import '../Login.css'
 
 export default function Login() {
@@ -25,6 +24,7 @@ export default function Login() {
     } else {
       setLoad(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return loading ? (
