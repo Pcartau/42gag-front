@@ -17,7 +17,7 @@ export default function Login() {
         if (!res) {
           setLoad(false);
         } else {
-          document.cookie = `session=${res.access_token};max-age=604800;domain=localhost`;
+          document.cookie = `session=${res.access_token};max-age=604800;domain=42gag.netlify.app`;
           history.push("/");
         }
       })
