@@ -10,7 +10,9 @@ export default function Home() {
   const [images, setImages] = React.useState([]);
   const [addPopup, setPopup] = React.useState(false);
   const [likeTimer, setLikeTimer] = React.useState(-1);
-  const [labelText, changeLabel] = React.useState('Choose picture to upload');
+  const [title, setTitle] = React.useState('');
+  const [preview, setPreview] = React.useState('#');
+  const [sending, setSend] = React.useState(false);
 
   React.useEffect(() => {
     getHomePageImages().then((images) => {
@@ -23,6 +25,13 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  function resetPopup() {
+    setPopup(!addPopup);
+    setSend(false);
+    setTitle('');
+    setPreview('#');
+  }
+
   const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -32,16 +41,16 @@ export default function Home() {
 
   async function handlePost() {
     const photo = document.getElementById("image-file").files[0];
-    const title = document.getElementById("title-input").value;
     const anonym = document.getElementById("anonym-input").checked;
 
-    if (!photo || !title) {
+    if (!photo || title === '') {
       return alert('Missing data !');
     }
+    setSend(true);
     const base64 = await toBase64(photo);
     postImage(title, anonym, base64).then((res) => {
-      changeLabel('Choose picure to upload');
       alert(res ? 'Image postée !' : 'Image non postée.\nMax size: 1mb')
+      resetPopup();
     });
   }
 
@@ -66,27 +75,8 @@ export default function Home() {
       </div>
     )
   }
-  
-  function AddImage() {
-    return (
-      <div className="add-popup">
-        <input className="title-input" id="title-input" placeholder="Titre" ></input>
 
-        <label id="label" for="image-file" className="custom-file-upload">{labelText}</label>
-        <input id="image-file" type="file" accept="image/*" style={{display: 'none'}} />
-
-        <div className="anonym-container">
-          <label for="anonym-input" className="">Send as anonym</label>
-          <input id="anonym-input" type="checkbox" />
-        </div>
-
-        <div className="buttons-container">
-          <p className="confirm-button" onClick={() => handlePost()}>Send Image</p>
-          <p className="cancel-button" onClick={() => setPopup(!addPopup)}>Cancel</p>
-        </div>
-      </div>
-    )
-  }
+  React.useEffect(() => console.log(preview), [preview]);
 
   return (
     <div className="main">
@@ -115,7 +105,34 @@ export default function Home() {
           </div>
         )}
       </div>
-      {addPopup ? <AddImage /> : null}
+      {addPopup ? 
+        <div className="add-popup">
+          <input className="title-input" id="title-input" placeholder="Titre" value={title} onChange={(e) => setTitle(e.target.value)} />
+
+          {preview === '#' ?
+            <label id="label" for="image-file" className="custom-file-upload">Choose picture to upload</label>
+            :
+            <img alt="preview" src={preview} className="preview-image" />
+          }
+          <input id="image-file" type="file" accept="image/*" style={{display: 'none'}} onChange={(e) => setPreview(URL.createObjectURL(e.target.files[0]))} />
+
+          <div className="anonym-container">
+            <label for="anonym-input" className="">Send as anonym</label>
+            <input id="anonym-input" type="checkbox" />
+          </div>
+
+          {sending ?
+            <p className="confirm-button">Envoi en cours...</p>
+            :
+            <div className="buttons-container">
+              <p className="confirm-button" onClick={() => handlePost()}>Send Image</p>
+              <p className="cancel-button" onClick={() => resetPopup()}>Cancel</p>
+            </div>
+          }
+        </div>
+        :
+        null
+      }
       <Footer />
     </div>
   )

@@ -177,3 +177,9 @@ body {
   padding: 10px;
   border-radius: 4px;
 }
+.preview-image {
+  width: 100px;
+  max-height: 250px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
