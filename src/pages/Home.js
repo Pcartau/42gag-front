@@ -29,7 +29,7 @@ export default function Home() {
   }, []);
 
   window.onscroll = function() {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
       requestNewImages();
     }
   };
