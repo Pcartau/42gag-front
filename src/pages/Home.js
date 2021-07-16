@@ -3,10 +3,13 @@ import { getHomePageImages, postImage, likeImage } from '../utils/api';
 import { useHistory } from "react-router-dom";
 import { ReactComponent as Heart } from '../heart.svg';
 import { ReactComponent as Add } from '../add.svg';
+import { ReactComponent as Flame } from '../flame.svg';
 import '../Home.css'
 
 export default function Home() {
   const history = useHistory();
+  const [page, setPage] = React.useState(0);
+  const [mode, setMode] = React.useState('latest');
   const [images, setImages] = React.useState([]);
   const [addPopup, setPopup] = React.useState(false);
   const [likeTimer, setLikeTimer] = React.useState(-1);
@@ -15,7 +18,7 @@ export default function Home() {
   const [sending, setSend] = React.useState(false);
 
   React.useEffect(() => {
-    getHomePageImages().then((images) => {
+    getHomePageImages(0, mode).then((images) => {
       if (!images) {
         history.push("/login");
       } else {
@@ -24,6 +27,38 @@ export default function Home() {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  window.onscroll = function() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      requestNewImages();
+    }
+  };
+
+  function requestNewImages() {
+    if (page === -1) return;
+    getHomePageImages(page + 1, mode).then((newImages) => {
+      if (newImages.length === 0) {
+        setPage(-1);
+      } else {
+        setImages([...images, ...newImages]);
+        setPage(page + 1);
+      }
+    });
+  }
+
+  function changeMode(newMode) {
+    setPage(-1);
+    setMode(newMode);
+    setImages([]);
+    getHomePageImages(0, newMode).then((newImages) => {
+      if (newImages.length === 0) {
+        setPage(-1);
+      } else {
+        setImages(newImages);
+        setPage(0);
+      }
+    })
+  }
 
   function resetPopup() {
     setPopup(!addPopup);
@@ -60,7 +95,7 @@ export default function Home() {
     if (likeTimer !== -1) {
       elem.style.opacity = 1;
       setTimeout(() => elem.style.opacity = 0, 500);
-      likeImage(image_id).then(() => setImages(images));
+      likeImage(image_id);
       setLikeTimer(-1);
     } else {
       setLikeTimer(1);
@@ -71,12 +106,12 @@ export default function Home() {
   function Footer() {
     return (
       <div className="footer">
-        <Add width={30} height={30} onClick={() => setPopup(!addPopup)} />
+        <Flame width={30} height={30} onClick={() => changeMode('latest')} />
+        <Add fill={'#ffffff'} width={30} height={30} onClick={() => setPopup(!addPopup)} />
+        <Heart fill={'#ffffff'} width={30} height={30} onClick={() => changeMode('hotest')} />
       </div>
     )
   }
-
-  React.useEffect(() => console.log(preview), [preview]);
 
   return (
     <div className="main">

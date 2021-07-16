@@ -8,10 +8,10 @@ export async function login(code) {
   .catch(() => false)
 }
 
-export async function getHomePageImages(page=0) {
+export async function getHomePageImages(page=0, mode='latest') {
   const token = document.cookie?.split('=')[1];
 
-  return axios.get(`${url}/homepage/${page}`, {headers: { Authorization: `Bearer ${token}`}})
+  return axios.get(`${url}/homepage/${page}/${mode}`, {headers: { Authorization: `Bearer ${token}`}})
   .then((res) => res.data)
   .catch(() => false);
 }
