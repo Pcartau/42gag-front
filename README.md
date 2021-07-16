@@ -3,7 +3,7 @@
 > :warning: Pull requests: aucune erreur ou warning n'est toléré !
 
 ### Setup:
-Clonez le répo et lancez `npm install && npm start`
+Clonez le répo et lancez `npm install && npm start`\
 Allez sur [http://localhost:3000](http://localhost:3000) pour voir votre version.
 
 #### Récupérez votre cookie de session !
